@@ -3,6 +3,7 @@ package org.devathon.contest2016;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.devathon.contest2016.events.BlockBreak;
 import org.devathon.contest2016.events.BlockPlace;
 import org.devathon.contest2016.events.PlayerJoin;
 import org.devathon.contest2016.logic.FarmLoop;
@@ -36,6 +37,7 @@ public class DevathonPlugin extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
 
         pm.registerEvents(new BlockPlace(), this);
+        pm.registerEvents(new BlockBreak(), this);
         pm.registerEvents(new PlayerJoin(), this);
     }
 

@@ -17,6 +17,7 @@ Iron:
 
 Config structure:
     farmingBlocks:
+        lastID: 1
         1:
             location:
                 x: 1
