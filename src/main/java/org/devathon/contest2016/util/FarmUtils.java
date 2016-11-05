@@ -1,6 +1,5 @@
 package org.devathon.contest2016.util;
 
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

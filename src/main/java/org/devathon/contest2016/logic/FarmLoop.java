@@ -17,54 +17,64 @@ public class FarmLoop implements Runnable {
         Set<String> farmBlocks = DevathonPlugin.instance.getConfig()
                 .getConfigurationSection("farmingBlocks").getKeys(false);
 
-        for (String id : farmBlocks) {
-            Location location = new Location(Bukkit.getWorld(DevathonPlugin.instance.getConfig().getString("world")),
-                    DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.x"),
-                    DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.y"),
-                    DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.z"));
+        if (farmBlocks.size() > 0) {
+            for (String id : farmBlocks) {
+                Location location = new Location(Bukkit.getWorld(DevathonPlugin.instance.getConfig().getString("world")),
+                        DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.x"),
+                        DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.y"),
+                        DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.z"));
 
-            boolean exists = FarmUtils.isValidFarm(location);
+                boolean exists = FarmUtils.isValidFarm(location);
 
-            if (exists) {
+                if (exists) {
+                    Block baseBlock = location.getBlock();
+                    int add = addAmount(baseBlock);
 //                Bad code lies ahead!
 //                TODO: Look into making this code much better
-                location.setY(location.getY() - 1);
+                    location.setX(location.getX() + 1);
 
-                location.setX(location.getX() + 1);
-                Location posX = location;
+                    Block block = location.getBlock();
 
-                Block block = posX.getBlock();
-                if (block.getType() == Material.CROPS
-                        || block.getType() == Material.CARROT
-                        || block.getType() == Material.POTATO) block.setData((byte) 7);
+                    if (block.getType() == Material.CROPS
+                            || block.getType() == Material.CARROT
+                            || block.getType() == Material.POTATO) block.setData((byte) add);
 
-                location.setX(location.getX() - 2);
-                Location negX = location;
+                    location.setX(location.getX() - 2);
 
-                block = negX.getBlock();
+                    block = location.getBlock();
 
-                if (block.getType() == Material.CROPS
-                        || block.getType() == Material.CARROT
-                        || block.getType() == Material.POTATO) block.setData((byte) 7);
-                location.setX(location.getX() + 1);
-                location.setZ(location.getZ() + 1);
-                Location posZ = location;
+                    if (block.getType() == Material.CROPS
+                            || block.getType() == Material.CARROT
+                            || block.getType() == Material.POTATO) block.setData((byte) add);
+                    location.setX(location.getX() + 1);
+                    location.setZ(location.getZ() + 1);
 
-                block = posZ.getBlock();
+                    block = location.getBlock();
 
-                if (block.getType() == Material.CROPS
-                        || block.getType() == Material.CARROT
-                        || block.getType() == Material.POTATO) block.setData((byte) 7);
-                location.setZ(location.getZ() - 2);
-                Location negZ = location;
+                    if (block.getType() == Material.CROPS
+                            || block.getType() == Material.CARROT
+                            || block.getType() == Material.POTATO) block.setData((byte) add);
+                    location.setZ(location.getZ() - 2);
 
-                block = negZ.getBlock();
+                    block = location.getBlock();
 
-                if (block.getType() == Material.CROPS
-                        || block.getType() == Material.CARROT
-                        || block.getType() == Material.POTATO) block.setData((byte) 7);
-
+                    if (block.getType() == Material.CROPS
+                            || block.getType() == Material.CARROT
+                            || block.getType() == Material.POTATO) block.setData((byte) add);
+                }
             }
         }
+    }
+
+    private int addAmount(Block block) {
+        if (block.getType() == Material.DIAMOND_BLOCK) {
+            return 7;
+        } else if (block.getType() == Material.GOLD_BLOCK) {
+            return 4;
+        } else if (block.getType() == Material.IRON_BLOCK) {
+            return 2;
+        }
+
+        return 0;
     }
 }
