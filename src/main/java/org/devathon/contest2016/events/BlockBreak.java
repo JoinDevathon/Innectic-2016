@@ -15,27 +15,42 @@ public class BlockBreak implements Listener {
 
     // TODO: Come back to this and make it less sad.
 
+    private Set<String> farmBlocks;
+
     @EventHandler
     public void onBreak(BlockBreakEvent e) {
         Block block = e.getBlock();
 
         String id = farmExists(block.getX(), block.getY(), block.getZ());
 
-        if (id != "") DevathonPlugin.instance.getConfig().set(id, null);
+        if (id != null) {
+            try {
+                DevathonPlugin.instance.getConfig().set("farmingBlocks." + id, null);
+                DevathonPlugin.instance.saveConfig();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     private String farmExists(int x, int y, int z) {
-        Set<String> farmBlocks = DevathonPlugin.instance.getConfig()
-                .getConfigurationSection("farmingBlocks").getKeys(false);
-        if (farmBlocks.size() >= 1) {
+        try {
+            farmBlocks = DevathonPlugin.instance.getConfig()
+                    .getConfigurationSection("farmingBlocks").getKeys(false);
+
+        } catch (NullPointerException e) {
+
+        }
+
+        if (farmBlocks != null) {
             for (String id : farmBlocks) {
-                if (DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".x") == x
-                        && DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".y") == y
-                        && DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".z") == z) {
+                if (DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.x") == x
+                        && DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.y") == y
+                        && DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.z") == z) {
                     return id;
                 }
             }
         }
-        return "";
+        return null;
     }
 }

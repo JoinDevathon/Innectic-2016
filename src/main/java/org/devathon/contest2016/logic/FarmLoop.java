@@ -13,11 +13,17 @@ import java.util.Set;
  * Created by Innectic on 11/5/2016.
  */
 public class FarmLoop implements Runnable {
-    public void run() {
-        Set<String> farmBlocks = DevathonPlugin.instance.getConfig()
-                .getConfigurationSection("farmingBlocks").getKeys(false);
+    private Set<String> farmBlocks;
 
-        if (farmBlocks.size() > 0) {
+    public void run() {
+        try {
+            farmBlocks = DevathonPlugin.instance.getConfig()
+                    .getConfigurationSection("farmingBlocks").getKeys(false);
+        } catch (NullPointerException e) {
+
+        }
+
+        if (farmBlocks != null) {
             for (String id : farmBlocks) {
                 Location location = new Location(Bukkit.getWorld(DevathonPlugin.instance.getConfig().getString("world")),
                         DevathonPlugin.instance.getConfig().getInt("farmingBlocks." + id + ".location.x"),
@@ -35,6 +41,8 @@ public class FarmLoop implements Runnable {
 
                     Block block = location.getBlock();
 
+                    if ((byte) (((byte) add) + block.getData()) > (byte) 7) add = 7;
+
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
                             || block.getType() == Material.POTATO) block.setData((byte) add);
@@ -42,6 +50,8 @@ public class FarmLoop implements Runnable {
                     location.setX(location.getX() - 2);
 
                     block = location.getBlock();
+
+                    if ((byte) (((byte) add) + block.getData()) > (byte) 7) add = 7;
 
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
@@ -51,12 +61,16 @@ public class FarmLoop implements Runnable {
 
                     block = location.getBlock();
 
+                    if ((byte) (((byte) add) + block.getData()) > (byte) 7) add = 7;
+
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
                             || block.getType() == Material.POTATO) block.setData((byte) add);
                     location.setZ(location.getZ() - 2);
 
                     block = location.getBlock();
+
+                    if ((byte) (((byte) add) + block.getData()) > (byte) 7) add = 7;
 
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
