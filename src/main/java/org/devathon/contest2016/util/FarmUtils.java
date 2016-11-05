@@ -15,12 +15,7 @@ public class FarmUtils {
 
         if (block.getType() == Material.DIAMOND_BLOCK
                 || block.getType() == Material.GOLD_BLOCK
-                || block.getType() == Material.IRON_BLOCK) {
-            location.setY(location.getY() + 1);
-            block = location.getBlock();
-            if (block.getType() == Material.CHEST
-                    || block.getType() == Material.TRAPPED_CHEST) return true;
-        }
-        return true;
+                || block.getType() == Material.IRON_BLOCK) return true;
+        return false;
     }
 }

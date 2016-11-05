@@ -7,13 +7,11 @@ How is works:
 Place a diamond, iron, or gold block in a field of crops.
 
 Diamond:
-    Harvests 4 x 4 x 1
-
+    Instagrow
 Gold:
-    Harvests 2 x 2 x 1
-
+    Half the normal time
 Iron:
-    Harvests: 1 x 1 x 1
+    1/4 of the time
 
 Config structure:
     farmingBlocks:
