@@ -46,6 +46,7 @@ public class FarmLoop implements Runnable {
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
                             || block.getType() == Material.POTATO) block.setData((byte) add);
+                    if (block.getType() == Material.BEETROOT_BLOCK) if (add >= 7) block.setData((byte) 3);
 
                     location.setX(location.getX() - 2);
 
@@ -56,6 +57,8 @@ public class FarmLoop implements Runnable {
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
                             || block.getType() == Material.POTATO) block.setData((byte) add);
+                    if (block.getType() == Material.BEETROOT_BLOCK) if (add >= 7) block.setData((byte) 3);
+
                     location.setX(location.getX() + 1);
                     location.setZ(location.getZ() + 1);
 
@@ -66,6 +69,8 @@ public class FarmLoop implements Runnable {
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
                             || block.getType() == Material.POTATO) block.setData((byte) add);
+                    if (block.getType() == Material.BEETROOT_BLOCK) if (add >= 7) block.setData((byte) 3);
+
                     location.setZ(location.getZ() - 2);
 
                     block = location.getBlock();
@@ -75,6 +80,7 @@ public class FarmLoop implements Runnable {
                     if (block.getType() == Material.CROPS
                             || block.getType() == Material.CARROT
                             || block.getType() == Material.POTATO) block.setData((byte) add);
+                    if (block.getType() == Material.BEETROOT_BLOCK) if (add >= 7) block.setData((byte) 3);
                 }
             }
         }

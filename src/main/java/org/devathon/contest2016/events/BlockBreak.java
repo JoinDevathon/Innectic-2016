@@ -38,9 +38,7 @@ public class BlockBreak implements Listener {
             farmBlocks = DevathonPlugin.instance.getConfig()
                     .getConfigurationSection("farmingBlocks").getKeys(false);
 
-        } catch (NullPointerException e) {
-
-        }
+        } catch (NullPointerException e) {}
 
         if (farmBlocks != null) {
             for (String id : farmBlocks) {
