@@ -59,7 +59,7 @@ while true; do
 
         read -n 1 -p "Do you want to recompile and restart the server? (y/n) " value
         if [ "$value" == "n" ]; then
-            echo "Shutting down process.."
+            echo "\nShutting down process.."
             exit
         fi
     else
@@ -91,6 +91,6 @@ while true; do
 
     cd ..
 
-    echo "Rebuilding project.."
+    echo "\nRebuilding project.."
     sleep 1
 done

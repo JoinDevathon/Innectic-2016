@@ -19,7 +19,7 @@ public class BlockPlace implements Listener {
         switch(block.getType()) {
             case DIAMOND_BLOCK:
                 try {
-                    DevathonPlugin.instance.getConfig().set("farmingBlocks.lastID", (lastID + 1));
+                    DevathonPlugin.instance.getConfig().set("lastID", (lastID + 1));
                     DevathonPlugin.instance.getConfig().set("farmingBlocks." + lastID + ".location.x",
                             block.getLocation().getBlockX());
                     DevathonPlugin.instance.getConfig().set("farmingBlocks." + lastID + ".location.y",
@@ -36,7 +36,7 @@ public class BlockPlace implements Listener {
 
             case GOLD_BLOCK:
                 try {
-                    DevathonPlugin.instance.getConfig().set("farmingBlocks.lastID", (lastID + 1));
+                    DevathonPlugin.instance.getConfig().set("lastID", (lastID + 1));
                     DevathonPlugin.instance.getConfig().set("farmingBlocks." + lastID + ".location.x",
                             block.getLocation().getBlockX());
                     DevathonPlugin.instance.getConfig().set("farmingBlocks." + lastID + ".location.y",
@@ -53,7 +53,7 @@ public class BlockPlace implements Listener {
 
             case IRON_BLOCK:
                 try {
-                    DevathonPlugin.instance.getConfig().set("farmingBlocks.lastID", (lastID + 1));
+                    DevathonPlugin.instance.getConfig().set("lastID", (lastID + 1));
                     DevathonPlugin.instance.getConfig().set("farmingBlocks." + lastID + ".location.x",
                             block.getLocation().getBlockX());
                     DevathonPlugin.instance.getConfig().set("farmingBlocks." + lastID + ".location.y",

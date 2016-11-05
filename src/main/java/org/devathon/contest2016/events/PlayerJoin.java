@@ -12,8 +12,9 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
-        if (DevathonPlugin.instance.getConfig().getString("world") == "") {
-            DevathonPlugin.instance.getConfig().set("world", e.getPlayer().getLocation().getWorld());
+        if (DevathonPlugin.instance.getConfig().getString("world") == ""
+                || DevathonPlugin.instance.getConfig().getString("world") == null) {
+            DevathonPlugin.instance.getConfig().set("world", e.getPlayer().getLocation().getWorld().getName());
         }
     }
 }
