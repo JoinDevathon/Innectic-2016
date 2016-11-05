@@ -1,0 +1,25 @@
+Theme is Machines.
+
+Idea is farming.
+
+How is works:
+
+Place a diamond, iron, or gold block in a field of crops.
+
+Diamond:
+    Harvests 4 x 4 x 1
+
+Gold:
+    Harvests 2 x 2 x 1
+
+Iron:
+    Harvests: 1 x 1 x 1
+
+Config structure:
+    farmingBlocks:
+        1:
+            location:
+                x: 1
+                y: 2
+                z: 3
+            type: diamond
